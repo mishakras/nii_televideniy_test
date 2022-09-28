@@ -28,7 +28,7 @@ if __name__ == "__main__":
     q = multiprocessing.Queue()
     w1 = multiprocessing.Process(name='random_number_generator',
                                  target=create_random_number,
-                                 args=(q,e1, e2))
+                                 args=(q, e1, e2))
     w1.start()
     serverSocket = socket.socket()
     ip = "127.0.0.1"

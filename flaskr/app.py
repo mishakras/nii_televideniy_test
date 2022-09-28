@@ -1,13 +1,10 @@
 from threading import Lock
 import socket
 
-from flask import Flask, render_template, session, request, \
-    copy_current_request_context
-from flask_socketio import SocketIO, emit, join_room, leave_room, \
-    close_room, rooms, disconnect
+from flask import Flask, render_template
+from flask_socketio import SocketIO
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 thread = None
 thread_lock = Lock()
@@ -18,7 +15,6 @@ def background_thread():
     clientsocket.connect(("localhost", 35491))
     while True:
         random_number = clientsocket.recv(100).decode()
-        print(random_number)
         socketio.emit('my_response',
                       {'random_number': random_number})
 
