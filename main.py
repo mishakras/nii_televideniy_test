@@ -32,7 +32,10 @@ if __name__ == "__main__":
     ip = "127.0.0.1"
     port = 35491
     serverSocket.bind((ip, port))
-    (clientConnection, clientAddress) = serverSocket.accept()
-    for _ in gen():
-        e.wait()
-        serverSocket.sendall(str.encode(str(q.get())))
+    serverSocket.listen()
+    while (True):
+        (clientConnection, clientAddress) = serverSocket.accept()
+        for _ in gen():
+            e.wait()
+            number = q.get()
+            clientConnection.sendall(str.encode(str(number)))
