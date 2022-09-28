@@ -17,10 +17,10 @@ def background_thread():
     clientsocket = socket.socket()
     clientsocket.connect(("localhost", 35491))
     while True:
-        data = clientsocket.recv(100).decode()
-        print(data)
+        random_number = clientsocket.recv(100).decode()
+        print(random_number)
         socketio.emit('my_response',
-                      {'data': data})
+                      {'random_number': random_number})
 
 
 @app.route('/')

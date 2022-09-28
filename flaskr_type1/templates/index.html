@@ -11,7 +11,8 @@
                        socket.emit('my_event', {data: 'I\'m connected!'});
                    });
                    socket.on('my_response', function(msg) {
-                       $('#log').append('<br>' + $('<div/>').text('Received #' + msg.data).html());
+                       tmr = document.getElementById ('random_number');
+                       tmr.innerText = msg.random_number
                    });
         });
     </script>
@@ -20,8 +21,6 @@
 <body>
 <h1>Текущее значение случайного числа</h1>
 <div id="random_number" class="random_number">
-    <p>{{current_random_number}}</p>
 </div>
-<div id="log"></div>
 </body>
 </html>
